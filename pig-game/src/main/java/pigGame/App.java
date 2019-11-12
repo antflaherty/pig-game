@@ -11,16 +11,16 @@ public class App {
 
 	public static void main(String[] args)
 	{
-		JFrame window = new JFrame();
+		final JFrame window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-		GameWindow gameWindow = new GameWindow(1500,700);
+		final GameWindow gameWindow = new GameWindow(1500,700);
 
-		Screen screen1 = new Screen(120, 180);
-		Screen screen2 = new Screen(150, 150);
-		Screen screen3 = new Screen(135, 165);
-		Screen screen4 = new Screen(100, 150);
+		final Screen screen1 = new Screen(120, 180);
+		final Screen screen2 = new Screen(150, 150);
+		final Screen screen3 = new Screen(135, 165);
+		final Screen screen4 = new Screen(100, 150);
 		
 		gameWindow.addScreen(screen1, new GameWindow.ScreenLocation(10, 40));
 //		gameWindow.addScreen(screen2, new GameWindow.ScreenLocation(150, 200));
@@ -41,7 +41,7 @@ public class App {
 		
 
 		
-		Hero piggy = new Hero(new Position(50, 50, screen1), 5);
+		final Hero piggy = new Hero(new Position(50, 50, screen1), 5);
 		gameWindow.addHero(piggy);
 
 		window.addKeyListener(new KeyListener() {

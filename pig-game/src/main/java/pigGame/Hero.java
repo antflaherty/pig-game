@@ -2,8 +2,7 @@ package pigGame;
 
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
+import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -34,10 +33,9 @@ public class Hero implements Cloneable{
 	
 	private void importSprite()
 	{
-		File pigFile = new File("pig.png");
 		try {
-			sprite = ImageIO.read(pigFile);
-		} catch (IOException e) {
+			sprite = ImageIO.read(getClass().getResource("/pig.png"));
+		} catch (Exception e) {
 			System.out.println("Error reading image file - " + e.toString());
 		}
 	}

@@ -6,7 +6,7 @@
 
   <groupId>pig-game</groupId>
   <artifactId>pigGame</artifactId>
-  <version>0.1</version>
+  <version>1.0-SNAPSHOT</version>
 
   <name>pig-game</name>
   <!-- FIXME change it to the project's website -->

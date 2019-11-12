@@ -1,4 +1,4 @@
-package piggyPuzzle;
+package pigGame;
 
 import java.awt.Color;
 import java.awt.Dimension;

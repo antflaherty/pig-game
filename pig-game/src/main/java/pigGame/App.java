@@ -1,4 +1,4 @@
-package piggyPuzzle;
+package pigGame;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

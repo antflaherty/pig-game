@@ -1,4 +1,4 @@
-package piggyPuzzle;
+package pigGame;
 
 public enum Direction {
 	

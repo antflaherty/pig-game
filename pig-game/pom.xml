@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>pig-game</groupId>
-  <artifactId>pig-game</artifactId>
+  <artifactId>pigGame</artifactId>
   <version>0.1</version>
 
   <name>pig-game</name>

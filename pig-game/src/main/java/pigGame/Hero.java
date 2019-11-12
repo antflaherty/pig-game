@@ -1,4 +1,4 @@
-package piggyPuzzle;
+package pigGame;
 
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
@@ -34,9 +34,9 @@ public class Hero implements Cloneable{
 	
 	private void importSprite()
 	{
-		File pigFile = new File("resources/pig.png");
+		File pigFile = new File("pig.png");
 		try {
-			sprite =ImageIO.read(pigFile);
+			sprite = ImageIO.read(pigFile);
 		} catch (IOException e) {
 			System.out.println("Error reading image file - " + e.toString());
 		}

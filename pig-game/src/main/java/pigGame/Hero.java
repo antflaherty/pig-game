@@ -50,16 +50,16 @@ public class Hero implements Cloneable{
 		switch(direction)
 		{
 		case RIGHT :
-			changePositionGivenOrientation(moveSpeed,0);
+			changePositionGivenOrientation(distance,0);
 			break;
 		case LEFT :
-			changePositionGivenOrientation(-moveSpeed,0);
+			changePositionGivenOrientation(-distance,0);
 			break;
 		case DOWN :
-			changePositionGivenOrientation(0,moveSpeed);
+			changePositionGivenOrientation(0,distance);
 			break;
 		case UP :
-			changePositionGivenOrientation(0,-moveSpeed);
+			changePositionGivenOrientation(0,-distance);
 			break;
 		}
 	}
@@ -100,19 +100,19 @@ public class Hero implements Cloneable{
 	public void changePosition(int horizontal, int vertical)
 	{
 		if(position.getXPosition() + horizontal > position.getScreen().getWidth()) {
-			int nextScreenSide = position.calculateNewPosition(Screen.SCREEN_RIGHT, position.getScreen().getAdjacentScreen(Screen.SCREEN_RIGHT), moveSpeed);
+			int nextScreenSide = position.calculateNewPosition(Screen.SCREEN_RIGHT, position.getScreen().getAdjacentScreen(Screen.SCREEN_RIGHT), horizontal);
 			changeOrientation(Orientation.computeOrientationChange(Screen.SCREEN_RIGHT, nextScreenSide));
 		}
 		else if(position.getXPosition() + horizontal < 0) {
-			int nextScreenSide = position.calculateNewPosition(Screen.SCREEN_LEFT, position.getScreen().getAdjacentScreen(Screen.SCREEN_LEFT), moveSpeed);
+			int nextScreenSide = position.calculateNewPosition(Screen.SCREEN_LEFT, position.getScreen().getAdjacentScreen(Screen.SCREEN_LEFT), -horizontal);
 			changeOrientation(Orientation.computeOrientationChange(Screen.SCREEN_LEFT, nextScreenSide));
 		}
 		else if(position.getYPosition() + vertical > position.getScreen().getHeight()) {
-			int nextScreenSide = position.calculateNewPosition(Screen.SCREEN_DOWN, position.getScreen().getAdjacentScreen(Screen.SCREEN_DOWN), moveSpeed);
+			int nextScreenSide = position.calculateNewPosition(Screen.SCREEN_DOWN, position.getScreen().getAdjacentScreen(Screen.SCREEN_DOWN), vertical);
 			changeOrientation(Orientation.computeOrientationChange(Screen.SCREEN_DOWN, nextScreenSide));
 		}
 		else if(position.getYPosition() + vertical < 0) {
-			int nextScreenSide = position.calculateNewPosition(Screen.SCREEN_UP, position.getScreen().getAdjacentScreen(Screen.SCREEN_UP), moveSpeed);
+			int nextScreenSide = position.calculateNewPosition(Screen.SCREEN_UP, position.getScreen().getAdjacentScreen(Screen.SCREEN_UP), -vertical);
 			changeOrientation(Orientation.computeOrientationChange(Screen.SCREEN_UP, nextScreenSide));
 		}
 		else {

@@ -68,7 +68,7 @@ public class GameWindow extends JPanel{
 
 			Screen.ScreenSideWrapper screenAndSide = ghost.getPosition().getScreen().getAdjacentScreen(Screen.SCREEN_LEFT);
 
-			ghost.changePosition(-ghost.getSprite().getWidth(), 0);
+			ghost.changePosition(-ghost.getSprite().getWidth()/2, 0);
 
 			adjustPosition(ghost, screenAndSide.side, ghost.getSprite().getWidth()/2);
 
@@ -150,8 +150,6 @@ public class GameWindow extends JPanel{
 
 			for(Hero ghost : ghosts)
 			{
-				System.out.println("ghost");
-				
 				if(ghost.getPosition().getScreen().equals(screen))
 				{
 					drawHero(g, screen, ghost);
@@ -162,16 +160,12 @@ public class GameWindow extends JPanel{
 
 	private void drawHero(Graphics g, Screen screenContainingHero, Hero heroToDraw)
 	{
-		System.out.println("UP" + heroToDraw.upOverlap() + ", DOWN" + heroToDraw.downOverlap() + ", LEFT" + heroToDraw.leftOverlap() + ", RIGHT" + heroToDraw.rightOverlap());
-		
 		Position heroPosition = heroToDraw.getPosition();
 
 		int cropX = heroToDraw.leftOverlap() > 0 ? heroToDraw.leftOverlap() : 0;
 		int cropY = heroToDraw.upOverlap() > 0 ? heroToDraw.upOverlap() : 0;
 		int cropWidth = heroToDraw.getSprite().getWidth() - cropX - (heroToDraw.rightOverlap() > 0 ? heroToDraw.rightOverlap() : 0);
 		int cropHeight = heroToDraw.getSprite().getHeight() - cropY - (heroToDraw.downOverlap() > 0 ? heroToDraw.downOverlap() : 0);
-
-		System.out.println(cropX + ", " + cropWidth);
 
 		if(cropWidth > 0 && cropHeight > 0)
 		{

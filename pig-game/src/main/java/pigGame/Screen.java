@@ -1,7 +1,6 @@
 package pigGame;
 
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.awt.Color;
 
 public class Screen {

@@ -18,16 +18,23 @@ public class GameHandler implements KeyListener, Runnable
     public static void main(String[] args)
     {
         GameHandler handler = new GameHandler();
-        handler.run();
+        handler.prepareSampleGame();
+
+        SwingUtilities.invokeLater(handler);
     }
-
-
 
     public GameHandler()
     {
-        gameWindow = new GameWindow(500,500);
+        gameWindow = new GameWindow(800,600);
         screens = new ArrayList<Screen>();
         barriers = new ArrayList<Barrier>();
+    }
+
+    public void prepareSampleGame()
+    {
+        Screen screen1 = new Screen(120, 180, 10, 10);
+        screens.add(screen1);
+        hero = new Hero(new Position(50, 50, screen1), 5);
     }
 
 
@@ -40,6 +47,7 @@ public class GameHandler implements KeyListener, Runnable
 
     private void prepareWindow()
     {
+        gameWindow.paint(screens, barriers, hero, target);
         window = new JFrame("Pig Game");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.addKeyListener(this);
@@ -52,8 +60,26 @@ public class GameHandler implements KeyListener, Runnable
     @Override
     public void keyPressed(KeyEvent e)
     {
-        
-        gameWindow.repaint();
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_DOWN:
+                hero.move(Direction.DOWN);
+                gameWindow.repaint();
+                break;
+            case KeyEvent.VK_UP:
+                hero.move(Direction.UP);
+                gameWindow.repaint();
+                break;
+            case KeyEvent.VK_RIGHT:
+                hero.move(Direction.RIGHT);
+                gameWindow.repaint();
+                break;
+            case KeyEvent.VK_LEFT:
+                hero.move(Direction.LEFT);
+                gameWindow.repaint();
+                break;
+        }
+
+        gameWindow.paint(screens, barriers, hero, target);
     }
 
     @Override

@@ -18,7 +18,6 @@ public class GameWindow extends JPanel{
 	private int height;
 
 	private ArrayList<Screen> screens;
-	private HashMap<Screen, ScreenLocation> screenLocations;
 
 	private ArrayList<Barrier> barriers = new ArrayList<Barrier>();
 
@@ -34,41 +33,16 @@ public class GameWindow extends JPanel{
 		setPreferredSize(new Dimension(width, height));
 
 		screens = new ArrayList<Screen>();
-		screenLocations = new HashMap<Screen, ScreenLocation>();
 	}
 
-	public void addScreen(Screen screen, ScreenLocation location)
+	public void paint(ArrayList<Screen> screens, ArrayList<Barrier> barriers, Hero hero, Target target)
 	{
-		screens.add(screen);
-		screenLocations.put(screen, location);
-	}
-
-	public void setHero(Hero hero)
-	{
-		this.hero = hero;
-	}
-
-	public void setTarget(Target target)
-	{
-		this.target = target;
-	}
-
-	public void addBarrier(Barrier barrier)
-	{
-		barriers.add(barrier);
-	}
-
-	public void addBarriers(ArrayList<Barrier> barriers)
-	{
-		for(Barrier b : barriers)
-		{
-			addBarrier(b);
-		}
-	}
-
-	public void setBarriers(ArrayList<Barrier> barriers)
-	{
+		this.screens = screens;
 		this.barriers = barriers;
+		this.hero = hero;
+		this.target = target;
+
+		repaint();
 	}
 
 	@Override
@@ -171,8 +145,7 @@ public class GameWindow extends JPanel{
 
 		for(Screen screen : screens)
 		{
-			ScreenLocation location = screenLocations.get(screen);
-			g.fillRect(location.xPosition, location.yPosition, screen.getWidth(), screen.getHeight());
+			g.fillRect(screen.getXPosition(), screen.getYPosition(), screen.getWidth(), screen.getHeight());
 
 			if(hero.getPosition().getScreen().equals(screen))
 			{
@@ -199,8 +172,8 @@ public class GameWindow extends JPanel{
 
 					g.setColor(Barrier.COLOR);
 					g.fillRect(
-						location.xPosition + xPosition,
-						location.yPosition + yPosition,
+						screen.getXPosition() + xPosition,
+						screen.getYPosition() + yPosition,
 						width,
 						height
 					);
@@ -222,8 +195,8 @@ public class GameWindow extends JPanel{
 		{
 			BufferedImage sprite = heroToDraw.getSprite().getSubimage(cropX, cropY, cropWidth, cropHeight);
 
-			int xPosition = heroPosition.getXPosition() + screenLocations.get(screenContainingHero).xPosition;
-			int yPosition = heroPosition.getYPosition() + screenLocations.get(screenContainingHero).yPosition;
+			int xPosition = heroPosition.getXPosition() + screenContainingHero.getXPosition();
+			int yPosition = heroPosition.getYPosition() + screenContainingHero.getYPosition();
 
 			g.drawImage(sprite, xPosition - (heroToDraw.getSprite().getWidth()/2) + cropX, yPosition - (heroToDraw.getSprite().getHeight()/2) + cropY, null);
 		}
@@ -233,21 +206,9 @@ public class GameWindow extends JPanel{
 	{
 		BufferedImage sprite = target.getSprite();
 
-		int xPosition = screenLocations.get(target.getPosition().getScreen()).xPosition + target.getPosition().getXPosition();
-		int yPosition = screenLocations.get(target.getPosition().getScreen()).yPosition + target.getPosition().getYPosition();
+		int xPosition = target.getPosition().getScreen().getXPosition() + target.getPosition().getXPosition();
+		int yPosition = target.getPosition().getScreen().getYPosition() + target.getPosition().getYPosition();
 
 		g.drawImage(sprite, xPosition - sprite.getWidth()/2, yPosition - sprite.getHeight()/2, null);
-	}
-
-	static class ScreenLocation
-	{
-		int xPosition;
-		int yPosition;
-
-		public ScreenLocation(int x, int y)
-		{
-			this.xPosition = x;
-			this.yPosition = y;
-		}
 	}
 }

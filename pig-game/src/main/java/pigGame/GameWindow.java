@@ -20,7 +20,7 @@ public class GameWindow extends JPanel{
 	private ArrayList<Screen> screens;
 	private HashMap<Screen, ScreenLocation> screenLocations;
 
-	private ArrayList<Barrier> barriers;
+	private ArrayList<Barrier> barriers = new ArrayList<Barrier>();
 
 	private Hero hero;
 	private ArrayList<Hero> ghosts = new ArrayList<Hero>();
@@ -183,8 +183,19 @@ public class GameWindow extends JPanel{
 			{
 				if (barrier.getPosition().getScreen() == screen)
 				{
+					int xPosition = barrier.getPosition().getXPosition();
+					int yPosition = barrier.getPosition().getYPosition();
+
+					int width = xPosition + barrier.getWidth() > screen.getWidth() ? screen.getWidth() - xPosition : barrier.getWidth();
+					int height = yPosition + barrier.getHeight() > screen.getHeight() ? screen.getHeight() - yPosition : barrier.getHeight();
+
 					g.setColor(Barrier.COLOR);
-					g.fillRect(location.xPosition + barrier.getPosition().getXPosition(), location.yPosition + barrier.getPosition().getYPosition(), barrier.getWidth(), barrier.getHeight());
+					g.fillRect(
+						location.xPosition + xPosition,
+						location.yPosition + yPosition,
+						width,
+						height
+					);
 				}
 			}
 		}

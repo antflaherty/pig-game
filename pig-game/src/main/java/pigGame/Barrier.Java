@@ -10,6 +10,4 @@ public class Barrier
         this.height = height;
         this.width = width;
     }
-
-    
 }

@@ -43,7 +43,7 @@ public class Screen {
 		return adjacentScreens.get(direction);
 	}
 
-	public void addBarrier(Barrer barrier)
+	public void addBarrier(Barrier barrier)
 	{
 		barriers.add(barrier);
 	}

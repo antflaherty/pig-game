@@ -12,11 +12,15 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GameWindow extends JPanel{
 
+	public static final Color COLOR = new Color(0xDDDDDD);
+
 	private int width;
 	private int height;
 
 	private ArrayList<Screen> screens;
 	private HashMap<Screen, ScreenLocation> screenLocations;
+
+	private ArrayList<Barrier> barriers = new ArrayList<Barrier>();
 
 	private Hero hero;
 	private ArrayList<Hero> ghosts = new ArrayList<Hero>();
@@ -39,7 +43,7 @@ public class GameWindow extends JPanel{
 		screenLocations.put(screen, location);
 	}
 
-	public void addHero(Hero hero)
+	public void setHero(Hero hero)
 	{
 		this.hero = hero;
 	}
@@ -47,12 +51,29 @@ public class GameWindow extends JPanel{
 	public void setTarget(Target target)
 	{
 		this.target = target;
+
+	public void addBarrier(Barrier barrier)
+	{
+		barriers.add(barrier);
+	}
+
+	public void addBarriers(ArrayList<Barrier> barriers)
+	{
+		for(Barrier b : barriers)
+		{
+			addBarrier(b);
+		}
+	}
+
+	public void setBarriers(ArrayList<Barrier> barriers)
+	{
+		this.barriers = barriers;
 	}
 
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		g.setColor(new Color(0x000000));
+		g.setColor(COLOR);
 
 		g.fillRect(0, 0, width, height);
 
@@ -145,7 +166,7 @@ public class GameWindow extends JPanel{
 
 	private void drawScreens(Graphics g)
 	{
-		g.setColor(new Color(0x111111));
+		g.setColor(Screen.COLOR);
 
 		for(Screen screen : screens)
 		{
@@ -162,6 +183,26 @@ public class GameWindow extends JPanel{
 				if(ghost.getPosition().getScreen().equals(screen))
 				{
 					drawHero(g, screen, ghost);
+				}
+			}
+
+			for(Barrier barrier : barriers)
+			{
+				if (barrier.getPosition().getScreen() == screen)
+				{
+					int xPosition = barrier.getPosition().getXPosition();
+					int yPosition = barrier.getPosition().getYPosition();
+
+					int width = xPosition + barrier.getWidth() > screen.getWidth() ? screen.getWidth() - xPosition : barrier.getWidth();
+					int height = yPosition + barrier.getHeight() > screen.getHeight() ? screen.getHeight() - yPosition : barrier.getHeight();
+
+					g.setColor(Barrier.COLOR);
+					g.fillRect(
+						location.xPosition + xPosition,
+						location.yPosition + yPosition,
+						width,
+						height
+					);
 				}
 			}
 		}

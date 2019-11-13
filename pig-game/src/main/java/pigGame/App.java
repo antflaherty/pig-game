@@ -25,6 +25,9 @@ public class App {
 		final Target target = new Target(new Position (60, 90, screen1), new Orientation());
 		gameWindow.setTarget(target);
 		
+		final Barrier barrier1 = new Barrier(10,300,new Position(20,0,screen1));
+		gameWindow.addBarrier(barrier1);
+
 		gameWindow.addScreen(screen1, new GameWindow.ScreenLocation(10, 40));
 //		gameWindow.addScreen(screen2, new GameWindow.ScreenLocation(150, 200));
 //		gameWindow.addScreen(screen3, new GameWindow.ScreenLocation(600, 20));
@@ -45,7 +48,7 @@ public class App {
 
 		
 		final Hero piggy = new Hero(new Position(50, 50, screen1), 5);
-		gameWindow.addHero(piggy);
+		gameWindow.setHero(piggy);
 
 		window.addKeyListener(new KeyListener() {
 

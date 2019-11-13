@@ -178,6 +178,15 @@ public class GameWindow extends JPanel{
 					drawHero(g, screen, ghost);
 				}
 			}
+
+			for(Barrier barrier : barriers)
+			{
+				if (barrier.getPosition().getScreen() == screen)
+				{
+					g.setColor(Barrier.COLOR);
+					g.fillRect(location.xPosition + barrier.getPosition().getXPosition(), location.yPosition + barrier.getPosition().getYPosition(), barrier.getWidth(), barrier.getHeight());
+				}
+			}
 		}
 	}
 

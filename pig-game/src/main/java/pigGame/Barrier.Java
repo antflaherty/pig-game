@@ -16,5 +16,20 @@ public class Barrier
         this.height = height;
 		this.width = width;
 		this.topLeftCorner = topLeftCorner;
-    }
+	}
+	
+	public Position getPosition()
+	{
+		return topLeftCorner;
+	}
+
+	public int getWidth()
+	{
+		return width;
+	}
+
+	public int getHeight()
+	{
+		return height;
+	}
 } 

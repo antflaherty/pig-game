@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class GameWindow extends JPanel{
 
+	public static final Color COLOR = new Color(0xDDDDDD);
+
 	private int width;
 	private int height;
 
@@ -45,7 +47,7 @@ public class GameWindow extends JPanel{
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		g.setColor(new Color(0x000000));
+		g.setColor(COLOR);
 
 		g.fillRect(0, 0, width, height);
 
@@ -136,7 +138,7 @@ public class GameWindow extends JPanel{
 
 	private void drawScreens(Graphics g)
 	{
-		g.setColor(new Color(0x111111));
+		g.setColor(Screen.COLOR);
 
 		for(Screen screen : screens)
 		{

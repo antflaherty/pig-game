@@ -2,8 +2,10 @@ package pigGame;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.awt.Color;
 
 public class Screen {
+	public static final Color COLOR = new Color(0x777777);
 
 	public static final int SCREEN_UP = 1;
 	public static final int SCREEN_RIGHT = 2;

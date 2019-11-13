@@ -51,6 +51,7 @@ public class GameWindow extends JPanel{
 	public void setTarget(Target target)
 	{
 		this.target = target;
+	}
 
 	public void addBarrier(Barrier barrier)
 	{

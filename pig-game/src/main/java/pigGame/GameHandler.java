@@ -67,19 +67,15 @@ public class GameHandler implements KeyListener, Runnable
         switch(e.getKeyCode()) {
             case KeyEvent.VK_DOWN:
                 hero.move(Direction.DOWN);
-                gameWindow.repaint();
                 break;
             case KeyEvent.VK_UP:
                 hero.move(Direction.UP);
-                gameWindow.repaint();
                 break;
             case KeyEvent.VK_RIGHT:
                 hero.move(Direction.RIGHT);
-                gameWindow.repaint();
                 break;
             case KeyEvent.VK_LEFT:
                 hero.move(Direction.LEFT);
-                gameWindow.repaint();
                 break;
         }
 

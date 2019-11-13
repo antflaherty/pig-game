@@ -21,6 +21,8 @@ public class GameWindow extends JPanel{
 	private Hero hero;
 	private ArrayList<Hero> ghosts = new ArrayList<Hero>();
 
+	private Target target;
+
 	public GameWindow(int width, int height)
 	{
 		this.width = width;
@@ -42,6 +44,11 @@ public class GameWindow extends JPanel{
 		this.hero = hero;
 	}
 
+	public void setTarget(Target target)
+	{
+		this.target = target;
+	}
+
 	@Override
 	public void paintComponent(Graphics g)
 	{
@@ -52,6 +59,8 @@ public class GameWindow extends JPanel{
 		createGhosts();
 
 		drawScreens(g);
+
+		if(target != null) drawTarget(g);
 	}
 
 	private void createGhosts()
@@ -178,6 +187,15 @@ public class GameWindow extends JPanel{
 		}
 	}
 
+	private void drawTarget(Graphics g)
+	{
+		BufferedImage sprite = target.getSprite();
+
+		int xPosition = screenLocations.get(target.getPosition().getScreen()).xPosition + target.getPosition().getXPosition();
+		int yPosition = screenLocations.get(target.getPosition().getScreen()).yPosition + target.getPosition().getYPosition();
+
+		g.drawImage(sprite, xPosition - sprite.getWidth()/2, yPosition - sprite.getHeight()/2, null);
+	}
 
 	static class ScreenLocation
 	{

@@ -21,6 +21,9 @@ public class App {
 		final Screen screen2 = new Screen(150, 150);
 		final Screen screen3 = new Screen(135, 165);
 		final Screen screen4 = new Screen(100, 150);
+
+		final Target target = new Target(new Position (60, 90, screen1), new Orientation());
+		gameWindow.setTarget(target);
 		
 		gameWindow.addScreen(screen1, new GameWindow.ScreenLocation(10, 40));
 //		gameWindow.addScreen(screen2, new GameWindow.ScreenLocation(150, 200));

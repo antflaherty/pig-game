@@ -24,5 +24,18 @@ public class Target {
 			System.out.println("Error reading image file - " + e.toString());
 		}
 	}
+
+	public BufferedImage getSprite()
+	{
+		return sprite;
+	}
 	
+	public Position getPosition()
+	{
+		return position;
+	}
+
+	public Orientation getOrientation() {
+		return orientation;
+	}
 }

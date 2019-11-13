@@ -1,6 +1,7 @@
 package pigGame;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Screen {
 
@@ -11,6 +12,8 @@ public class Screen {
 	public static final int[] SCREEN_SIDES = {SCREEN_UP, SCREEN_RIGHT, SCREEN_DOWN, SCREEN_LEFT};
 	
 	private HashMap<Integer, ScreenSideWrapper> adjacentScreens = new HashMap<Integer, ScreenSideWrapper>();
+
+	private ArrayList<Barrier> barriers;
 	
 	private int width;
 	private int height;
@@ -38,6 +41,24 @@ public class Screen {
 	public ScreenSideWrapper getAdjacentScreen(int direction)
 	{
 		return adjacentScreens.get(direction);
+	}
+
+	public void addBarrier(Barrer barrier)
+	{
+		barriers.add(barrier);
+	}
+
+	public void addBarriers(ArrayList<Barrier> barriers)
+	{
+		for(Barrier b : barriers)
+		{
+			addBarrier(b);
+		}
+	}
+
+	public void setBarriers(ArrayList<Barrier> barriers)
+	{
+		this.barriers = barriers;
 	}
 	
 	public int getWidth()

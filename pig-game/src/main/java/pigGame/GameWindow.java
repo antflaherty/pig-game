@@ -20,6 +20,8 @@ public class GameWindow extends JPanel{
 	private ArrayList<Screen> screens;
 	private HashMap<Screen, ScreenLocation> screenLocations;
 
+	private ArrayList<Barrier> barriers;
+
 	private Hero hero;
 	private ArrayList<Hero> ghosts = new ArrayList<Hero>();
 
@@ -39,9 +41,28 @@ public class GameWindow extends JPanel{
 		screenLocations.put(screen, location);
 	}
 
-	public void addHero(Hero hero)
+	public void setHero(Hero hero)
 	{
 		this.hero = hero;
+	}
+
+
+	public void addBarrier(Barrier barrier)
+	{
+		barriers.add(barrier);
+	}
+
+	public void addBarriers(ArrayList<Barrier> barriers)
+	{
+		for(Barrier b : barriers)
+		{
+			addBarrier(b);
+		}
+	}
+
+	public void setBarriers(ArrayList<Barrier> barriers)
+	{
+		this.barriers = barriers;
 	}
 
 	@Override

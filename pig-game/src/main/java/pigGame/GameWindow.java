@@ -41,6 +41,7 @@ public class GameWindow extends JPanel{
 		this.hero = hero;
 		this.target = target;
 
+		createGhosts();
 		repaint();
 	}
 
@@ -50,8 +51,6 @@ public class GameWindow extends JPanel{
 		g.setColor(COLOR);
 
 		g.fillRect(0, 0, width, height);
-
-		createGhosts();
 
 		drawScreens(g);
 

@@ -60,9 +60,6 @@ public class GameWindow extends JPanel{
 
 	private void createGhosts()
 	{
-		
-		
-		
 		ghosts.clear();
 
 

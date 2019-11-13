@@ -34,6 +34,10 @@ public class GameHandler implements KeyListener, Runnable
     {
         Screen screen1 = new Screen(120, 180, 10, 10);
         screens.add(screen1);
+        Screen screen2 = new Screen(180, 120, 610, 470);
+        screens.add(screen2);
+        Screen.pairScreens(screen1, Screen.SCREEN_LEFT, screen2, Screen.SCREEN_DOWN);
+        Screen.pairScreens(screen2, Screen.SCREEN_UP, screen1, Screen.SCREEN_RIGHT);
         hero = new Hero(new Position(50, 50, screen1), 5);
     }
 

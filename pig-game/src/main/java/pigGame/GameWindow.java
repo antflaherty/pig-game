@@ -34,12 +34,12 @@ public class GameWindow extends JPanel{
 		screens = new ArrayList<Screen>();
 	}
 
-	public void paint(ArrayList<Screen> screens, ArrayList<Barrier> barriers, Hero hero, Target target)
+	public void paint(Level level)
 	{
-		this.screens = screens;
-		this.barriers = barriers;
-		this.hero = hero;
-		this.target = target;
+		this.screens = level.screens;
+		this.barriers = level.barriers;
+		this.hero = level.hero;
+		this.target = level.target;
 
 		createGhosts();
 		repaint();

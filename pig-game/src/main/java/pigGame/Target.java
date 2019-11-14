@@ -21,7 +21,7 @@ public class Target {
 		switch(orientation.getUpDirection())
 		{
 			case UP :
-				rotationSide = Screen.SCREEN_UP;
+				rotationSide = Screen.SCREEN_DOWN;
 				break;
 			case RIGHT :
 				rotationSide = Screen.SCREEN_LEFT;
@@ -30,9 +30,10 @@ public class Target {
 				rotationSide = Screen.SCREEN_RIGHT;
 				break;
 			case DOWN :
-				rotationSide = Screen.SCREEN_DOWN;
+				rotationSide = Screen.SCREEN_UP;
 				break;
 		}
+		System.out.println(Orientation.computeOrientationChange(Screen.SCREEN_UP, rotationSide));
 		transformSprite(Orientation.computeOrientationChange(Screen.SCREEN_UP, rotationSide));
 	}
 

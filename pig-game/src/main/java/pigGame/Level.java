@@ -28,6 +28,21 @@ public class Level
         testLevel.screens.add(screen6);
         Screen screen7 = new Screen(120, 120, 650, 100);
         testLevel.screens.add(screen7);
+
+        Screen.pairScreens(screen1, Screen.SCREEN_DOWN, screen4, Screen.SCREEN_LEFT);
+        Screen.pairScreens(screen4, Screen.SCREEN_RIGHT, screen7, Screen.SCREEN_RIGHT);
+        Screen.pairScreens(screen7, Screen.SCREEN_LEFT, screen2, Screen.SCREEN_RIGHT);
+        Screen.pairScreens(screen2, Screen.SCREEN_LEFT, screen5, Screen.SCREEN_UP);
+        Screen.pairScreens(screen5, Screen.SCREEN_DOWN, screen1, Screen.SCREEN_UP);
+
+        
+        Screen.pairScreens(screen2, Screen.SCREEN_UP, screen5, Screen.SCREEN_RIGHT);
+        Screen.pairScreens(screen5, Screen.SCREEN_LEFT, screen6, Screen.SCREEN_DOWN);
+        Screen.pairScreens(screen6, Screen.SCREEN_UP, screen7, Screen.SCREEN_UP);
+        Screen.pairScreens(screen7, Screen.SCREEN_DOWN, screen4, Screen.SCREEN_DOWN);
+        Screen.pairScreens(screen4, Screen.SCREEN_UP, screen3, Screen.SCREEN_RIGHT);
+        Screen.pairScreens(screen3, Screen.SCREEN_LEFT, screen2, Screen.SCREEN_DOWN);
+        
         
         testLevel.barriers = new ArrayList<Barrier>();
         

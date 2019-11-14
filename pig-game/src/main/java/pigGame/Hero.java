@@ -84,12 +84,12 @@ public class Hero implements Cloneable{
 			newY = -y;
 			break;
 		case LEFT :
-			newX = -y;
-			newY = x;
-			break;
-		case RIGHT :
 			newX = y;
 			newY = -x;
+			break;
+		case RIGHT :
+			newX = -y;
+			newY = x;
 		}
 		
 		changePosition(newX, newY);
@@ -186,6 +186,11 @@ public class Hero implements Cloneable{
 	public Orientation getOrientation()
 	{
 		return orientation;
+	}
+
+	public int getMoveSpeed()
+	{
+		return moveSpeed;
 	}
 	
 	public Hero clone()

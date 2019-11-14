@@ -22,9 +22,9 @@ public class Orientation {
 	{
 		HashMap<Integer, Direction> numberToUpDirection = new HashMap<Integer, Direction>();
 		numberToUpDirection.put(0, Direction.UP);
-		numberToUpDirection.put(1, Direction.LEFT);
+		numberToUpDirection.put(1, Direction.RIGHT);
 		numberToUpDirection.put(2, Direction.DOWN);
-		numberToUpDirection.put(3, Direction.RIGHT);
+		numberToUpDirection.put(3, Direction.LEFT);
 		
 		int currentDirectionNumber = 0;
 		

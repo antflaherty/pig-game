@@ -78,6 +78,7 @@ public class GameHandler implements KeyListener, Runnable {
         }
 
         gameWindow.paint(screens, barriers, hero, target);
+        System.out.println(target.isHeroInWinningPosition(hero));
     }
 
     @Override

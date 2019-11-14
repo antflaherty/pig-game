@@ -3,8 +3,6 @@ package pigGame;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.awt.image.*;
-import java.io.File;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
@@ -45,7 +43,7 @@ public class Hero implements Cloneable{
 		move(direction, moveSpeed);
 	}
 	
-	public void move(Direction direction, int distance)
+	private void move(Direction direction, int distance)
 	{
 		switch(direction)
 		{

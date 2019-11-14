@@ -1,7 +1,6 @@
 package pigGame;
 
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.awt.Color;
 
 public class Screen {
@@ -17,11 +16,15 @@ public class Screen {
 	
 	private int width;
 	private int height;
+	private int xPosition;
+	private int yPosition;
 	
-	public Screen(int width, int height)
+	public Screen(int width, int height, int xPosition, int yPosition)
 	{
 		this.width = width;
 		this.height = height;
+		this.xPosition = xPosition;
+		this.yPosition = yPosition;
 		
 		pairScreens(this, Screen.SCREEN_UP, this, Screen.SCREEN_DOWN);
 		pairScreens(this, Screen.SCREEN_LEFT, this, Screen.SCREEN_RIGHT);
@@ -51,6 +54,16 @@ public class Screen {
 	public int getHeight()
 	{
 		return height;
+	}
+
+	public int getXPosition()
+	{
+		return xPosition;
+	}
+
+	public int getYPosition()
+	{
+		return yPosition;
 	}
 	
 	class ScreenSideWrapper

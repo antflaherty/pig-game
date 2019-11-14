@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.JOptionPane;
 
 public class GameHandler implements KeyListener, Runnable {
     private ArrayList<Screen> screens;
@@ -78,7 +79,11 @@ public class GameHandler implements KeyListener, Runnable {
         }
 
         gameWindow.paint(screens, barriers, hero, target);
-        System.out.println(target.isHeroInWinningPosition(hero));
+
+        if(target.isHeroInWinningPosition(hero))
+        {
+            JOptionPane.showMessageDialog(window, "you win.");
+        }
     }
 
     @Override

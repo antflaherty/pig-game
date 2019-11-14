@@ -1,37 +1,34 @@
 package pigGame;
 
 import java.util.ArrayList;
+
 import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public class GameHandler implements KeyListener, Runnable
-{
+public class GameHandler implements KeyListener, Runnable {
     private ArrayList<Screen> screens;
     private ArrayList<Barrier> barriers;
     private Hero hero;
     private Target target;
-    
+
     private GameWindow gameWindow;
     private JFrame window;
-    
-    public static void main(String[] args)
-    {
+
+    public static void main(String[] args) {
         GameHandler handler = new GameHandler();
         handler.prepareSampleGame();
 
         SwingUtilities.invokeLater(handler);
     }
 
-    public GameHandler()
-    {
-        gameWindow = new GameWindow(800,600);
+    public GameHandler() {
+        gameWindow = new GameWindow(800, 600);
         screens = new ArrayList<Screen>();
         barriers = new ArrayList<Barrier>();
     }
 
-    public void prepareSampleGame()
-    {
+    public void prepareSampleGame() {
         Screen screen1 = new Screen(120, 180, 10, 10);
         screens.add(screen1);
         Screen screen2 = new Screen(180, 120, 610, 470);
@@ -39,6 +36,7 @@ public class GameHandler implements KeyListener, Runnable
         Screen.pairScreens(screen1, Screen.SCREEN_LEFT, screen2, Screen.SCREEN_DOWN);
         Screen.pairScreens(screen2, Screen.SCREEN_UP, screen1, Screen.SCREEN_RIGHT);
         hero = new Hero(new Position(50, 50, screen1), 5);
+        target = new Target(new Position(50, 50, screen2), new Orientation(false, Direction.RIGHT));
     }
 
 

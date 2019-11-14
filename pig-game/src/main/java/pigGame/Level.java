@@ -1,6 +1,7 @@
 package pigGame;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Level
 {
@@ -8,6 +9,12 @@ public class Level
     public ArrayList<Barrier> barriers;
     public Hero hero;
     public Target target;
+    
+
+    public static void main(String[] args)
+    {
+        Level level = generateRandomLevel(10);
+    }
 
     public static Level getTestLevel()
     {
@@ -51,5 +58,71 @@ public class Level
         testLevel.target = new Target(new Position(30, 80, screen5), new Orientation(false, Direction.DOWN));
 
         return testLevel;
+    }
+
+    public static Level generateRandomLevel(int numberOfScreens)
+    {
+        HashMap<Integer, Integer> intToScreenSide = new HashMap<>();
+        intToScreenSide.put(0, Screen.SCREEN_DOWN);
+        intToScreenSide.put(1, Screen.SCREEN_UP);
+        intToScreenSide.put(2, Screen.SCREEN_LEFT);
+        intToScreenSide.put(3, Screen.SCREEN_RIGHT);
+
+        ArrayList<Screen> screens = generateScreens(numberOfScreens);
+
+        ArrayList<Barrier> barriers = new ArrayList<>();
+
+        Hero hero = new Hero(new Position(30, 30, screens.get(0)), 10);
+
+        Level level = new Level();
+
+        level.screens = screens;
+        level.barriers = barriers;
+        level.hero = hero;
+
+        return level;
+    }
+
+    private static ArrayList<Screen> generateScreens(int numberOfScreens)
+    {
+        int screenSize = (int) (600 / (2 * (int) Math.round(Math.sqrt(numberOfScreens))));
+
+        int maxXPosition = GameWindow.WIDTH - screenSize;
+        int maxYPosition = GameWindow.HEIGHT - screenSize;
+
+        System.out.println(screenSize);
+
+        ArrayList<Screen> screens = new ArrayList<>();
+
+        for(int i = 0; i < numberOfScreens; i++)
+        {
+            Boolean screenOverlap = true;
+            
+            int xPosition;
+            int yPosition;
+
+            do
+            {
+                screenOverlap = false;
+
+                xPosition = (int) (maxXPosition * Math.random());
+                yPosition = (int) (maxYPosition * Math.random());
+                
+                for(Screen screen : screens)
+                {
+                    if(Math.abs(xPosition - screen.getXPosition()) <= screenSize
+                        && Math.abs(yPosition - screen.getYPosition()) <= screenSize)
+                        {
+                            screenOverlap = true;
+                        }
+                }
+            }
+            while (screenOverlap);
+
+            screens.add(new Screen(screenSize, screenSize, xPosition, yPosition));
+
+        }
+
+        return screens;
     }
 }

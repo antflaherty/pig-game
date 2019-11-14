@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 public class GameWindow extends JPanel{
 
 	public static final Color COLOR = new Color(0xDDDDDD);
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
 
 	private int width;
 	private int height;
@@ -25,10 +27,10 @@ public class GameWindow extends JPanel{
 
 	private Target target;
 
-	public GameWindow(int width, int height)
+	public GameWindow()
 	{
-		this.width = width;
-		this.height = height;
+		this.width = WIDTH;
+		this.height = HEIGHT;
 		setPreferredSize(new Dimension(width, height));
 
 		screens = new ArrayList<Screen>();

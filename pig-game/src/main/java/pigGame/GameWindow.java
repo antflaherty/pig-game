@@ -3,7 +3,9 @@ package pigGame;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.awt.AlphaComposite;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -206,6 +208,11 @@ public class GameWindow extends JPanel{
 		int xPosition = target.getPosition().getScreen().getXPosition() + target.getPosition().getXPosition();
 		int yPosition = target.getPosition().getScreen().getYPosition() + target.getPosition().getYPosition();
 
-		g.drawImage(sprite, xPosition - sprite.getWidth()/2, yPosition - sprite.getHeight()/2, null);
+		Graphics2D g2d = (Graphics2D) g;
+
+		float opacity = 0.5f;
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+
+		g2d.drawImage(sprite, xPosition - sprite.getWidth()/2, yPosition - sprite.getHeight()/2, null);
 	}
 }

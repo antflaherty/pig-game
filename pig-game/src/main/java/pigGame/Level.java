@@ -70,12 +70,15 @@ public class Level
         ArrayList<Barrier> barriers = new ArrayList<>();
         
         Hero hero = new Hero(new Position(30, 30, screens.get(0)), 10);
+
+        Target target = generateTarget(screens, hero);
         
         Level level = new Level();
         
         level.screens = screens;
         level.barriers = barriers;
         level.hero = hero;
+        level.target = target;
         
         return level;
     }
@@ -158,5 +161,25 @@ public class Level
 
             Screen.pairScreens(firstScreen, firstSide, secondScreen, secondSide);
         }
+    }
+
+    private static Target generateTarget(ArrayList<Screen> screens, Hero hero)
+    {
+        HashMap<Integer, Direction> directionMap = new HashMap<>();
+        directionMap.put(0, Direction.DOWN);
+        directionMap.put(1, Direction.UP);
+        directionMap.put(2, Direction.LEFT);
+        directionMap.put(3, Direction.RIGHT);
+        
+        Hero cloneHero = hero.clone();
+
+        for(int i = 0; i < screens.size() * 2; i++)
+        {
+            Direction direction = directionMap.get((int)(Math.random()*4));
+            cloneHero.move(direction, screens.get(0).getWidth());
+        }
+
+        Target target = new Target(cloneHero.getPosition(), cloneHero.getOrientation());
+        return target;
     }
 }

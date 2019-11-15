@@ -43,7 +43,7 @@ public class Hero implements Cloneable{
 		move(direction, moveSpeed);
 	}
 	
-	private void move(Direction direction, int distance)
+	public void move(Direction direction, int distance)
 	{
 		switch(direction)
 		{

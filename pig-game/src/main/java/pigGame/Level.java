@@ -145,8 +145,6 @@ public class Level
         {
             int indexOfFirstSideToPair = (int) (Math.random() * unpairedSides.size());
 
-            System.out.println(indexOfFirstSideToPair);
-
             pairedSides.add(unpairedSides.get(indexOfFirstSideToPair));
             unpairedSides.remove(indexOfFirstSideToPair);
         }

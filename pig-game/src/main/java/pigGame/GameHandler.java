@@ -19,7 +19,7 @@ public class GameHandler implements KeyListener, Runnable {
     
     public GameHandler() {
         gameWindow = new GameWindow();
-        level = Level.generateRandomLevel(4);
+        level = Level.generateRandomLevel(15);
     }
 
     // Runnable Override

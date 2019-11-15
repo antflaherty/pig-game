@@ -33,7 +33,6 @@ public class Target {
 				rotationSide = Screen.SCREEN_UP;
 				break;
 		}
-		System.out.println(Orientation.computeOrientationChange(Screen.SCREEN_UP, rotationSide));
 		transformSprite(Orientation.computeOrientationChange(Screen.SCREEN_UP, rotationSide));
 	}
 

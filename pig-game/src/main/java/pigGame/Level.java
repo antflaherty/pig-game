@@ -179,7 +179,11 @@ public class Level
             cloneHero.move(direction, screens.get(0).getWidth());
         }
 
-        Target target = new Target(cloneHero.getPosition(), cloneHero.getOrientation());
+        Screen targetScreen = cloneHero.getPosition().getScreen();
+
+        Position targetPosition = new Position(targetScreen.getWidth()/2, targetScreen.getHeight()/2, targetScreen);
+
+        Target target = new Target(targetPosition, cloneHero.getOrientation());
         return target;
     }
 }

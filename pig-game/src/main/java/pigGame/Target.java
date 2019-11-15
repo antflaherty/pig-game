@@ -33,7 +33,6 @@ public class Target {
 				rotationSide = Screen.SCREEN_UP;
 				break;
 		}
-		System.out.println(Orientation.computeOrientationChange(Screen.SCREEN_UP, rotationSide));
 		transformSprite(Orientation.computeOrientationChange(Screen.SCREEN_UP, rotationSide));
 	}
 
@@ -44,6 +43,11 @@ public class Target {
 		} catch (Exception e) {
 			System.out.println("Error reading image file - " + e.toString());
 		}
+
+		AffineTransform transform = new AffineTransform();
+		transform.scale(1.3,1.3);
+		AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
+	    sprite = op.filter(sprite, null);
 	}
 
 	private void transformSprite(int transformCoefficient)

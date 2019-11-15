@@ -61,7 +61,7 @@ public class GameHandler implements KeyListener, Runnable {
 
         gameWindow.paint(level);
 
-        if(level.target.isHeroInWinningPosition(level.hero))
+        if(level.target != null && level.target.isHeroInWinningPosition(level.hero))
         {
             JOptionPane.showMessageDialog(window, "you win.");
         }

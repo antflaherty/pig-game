@@ -13,7 +13,7 @@ public class Level
 
     public static void main(String[] args)
     {
-        Level level = generateRandomLevel(10);
+        Level level = generateRandomLevel(3);
     }
 
     public static Level getTestLevel()
@@ -62,67 +62,103 @@ public class Level
 
     public static Level generateRandomLevel(int numberOfScreens)
     {
-        HashMap<Integer, Integer> intToScreenSide = new HashMap<>();
-        intToScreenSide.put(0, Screen.SCREEN_DOWN);
-        intToScreenSide.put(1, Screen.SCREEN_UP);
-        intToScreenSide.put(2, Screen.SCREEN_LEFT);
-        intToScreenSide.put(3, Screen.SCREEN_RIGHT);
-
+        
         ArrayList<Screen> screens = generateScreens(numberOfScreens);
-
+        
+        pairScreens(screens);
+        
         ArrayList<Barrier> barriers = new ArrayList<>();
-
+        
         Hero hero = new Hero(new Position(30, 30, screens.get(0)), 10);
-
+        
         Level level = new Level();
-
+        
         level.screens = screens;
         level.barriers = barriers;
         level.hero = hero;
-
+        
         return level;
     }
-
+    
     private static ArrayList<Screen> generateScreens(int numberOfScreens)
     {
         int screenSize = (int) (600 / (2 * (int) Math.round(Math.sqrt(numberOfScreens))));
-
+        
         int maxXPosition = GameWindow.WIDTH - screenSize;
         int maxYPosition = GameWindow.HEIGHT - screenSize;
-
-        System.out.println(screenSize);
-
+        
         ArrayList<Screen> screens = new ArrayList<>();
-
+        
         for(int i = 0; i < numberOfScreens; i++)
         {
             Boolean screenOverlap = true;
             
             int xPosition;
             int yPosition;
-
+            
             do
             {
                 screenOverlap = false;
-
+                
                 xPosition = (int) (maxXPosition * Math.random());
                 yPosition = (int) (maxYPosition * Math.random());
                 
                 for(Screen screen : screens)
                 {
                     if(Math.abs(xPosition - screen.getXPosition()) <= screenSize
-                        && Math.abs(yPosition - screen.getYPosition()) <= screenSize)
-                        {
-                            screenOverlap = true;
-                        }
+                    && Math.abs(yPosition - screen.getYPosition()) <= screenSize)
+                    {
+                        screenOverlap = true;
+                    }
                 }
             }
             while (screenOverlap);
-
+            
             screens.add(new Screen(screenSize, screenSize, xPosition, yPosition));
+            
+        }
+        
+        return screens;
+    }
+    
+    private static void pairScreens(ArrayList<Screen> screens)
+    {
+        HashMap<Integer, Integer> intToScreenSide = new HashMap<>();
+        intToScreenSide.put(0, Screen.SCREEN_DOWN);
+        intToScreenSide.put(1, Screen.SCREEN_UP);
+        intToScreenSide.put(2, Screen.SCREEN_LEFT);
+        intToScreenSide.put(3, Screen.SCREEN_RIGHT);
+        
+        ArrayList<int[]> unpairedSides = new ArrayList<>();
 
+        for(int i = 0; i < screens.size(); i++)
+        {
+            unpairedSides.add(new int[]{i, Screen.SCREEN_DOWN});
+            unpairedSides.add(new int[]{i, Screen.SCREEN_UP});
+            unpairedSides.add(new int[]{i, Screen.SCREEN_LEFT});
+            unpairedSides.add(new int[]{i, Screen.SCREEN_RIGHT});
         }
 
-        return screens;
+        ArrayList<int[]> pairedSides = new ArrayList<>();
+
+        for (int i = 0; i < screens.size() * 4; i++)
+        {
+            int indexOfFirstSideToPair = (int) (Math.random() * unpairedSides.size());
+
+            System.out.println(indexOfFirstSideToPair);
+
+            pairedSides.add(unpairedSides.get(indexOfFirstSideToPair));
+            unpairedSides.remove(indexOfFirstSideToPair);
+        }
+
+        for (int i = 0; i < pairedSides.size() / 2; i++)
+        {
+            Screen firstScreen = screens.get(pairedSides.get(2 * i)[0]);
+            int firstSide = pairedSides.get(2 * i)[1];
+            Screen secondScreen = screens.get(pairedSides.get(2 * i+1)[0]);
+            int secondSide = pairedSides.get(2 * i+1)[1];
+
+            Screen.pairScreens(firstScreen, firstSide, secondScreen, secondSide);
+        }
     }
 }

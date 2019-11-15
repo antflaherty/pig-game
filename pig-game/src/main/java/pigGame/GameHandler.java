@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 public class GameHandler implements KeyListener, Runnable {
     private Level level;
+    private int difficulty;
 
     private GameWindow gameWindow;
     private JFrame window;
@@ -18,8 +19,9 @@ public class GameHandler implements KeyListener, Runnable {
     }
     
     public GameHandler() {
+        difficulty = 1;
         gameWindow = new GameWindow();
-        level = Level.generateRandomLevel(8);
+        level = Level.generateRandomLevel(difficulty);
     }
 
     // Runnable Override
@@ -60,10 +62,13 @@ public class GameHandler implements KeyListener, Runnable {
         }
 
         gameWindow.paint(level);
-
+        
         if(level.target != null && level.target.isHeroInWinningPosition(level.hero))
         {
             JOptionPane.showMessageDialog(window, "you win.");
+            difficulty++;
+            level = Level.generateRandomLevel(difficulty);
+            gameWindow.paint(level);
         }
     }
 
